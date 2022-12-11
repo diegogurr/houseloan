@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import React, {useEffect, useState} from "react";
 import Box from "@mui/material/Box"
 import {Checkbox, FormControlLabel, FormGroup} from "@mui/material";
+import PersonIcon from '@mui/icons-material/Person';
 
 const priceSliderValues = [
     {
@@ -116,10 +117,16 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
     };
 
     return (
-        <Box sx={{display: 'inline-block', borderColor: 'grey.300', px: 0}}>
+        <Box sx={{display: 'inline-block', borderColor: 'grey.300'}}>
             <Grid>
-
-                <h3>Borrower 1*:</h3>
+                <Grid container direction="row" alignItems="center" justifyContent="center">
+                    <Grid item>
+                        <PersonIcon/>
+                    </Grid>
+                    <Grid item>
+                        <h3>Borrower 1*:</h3>
+                    </Grid>
+                </Grid>
 
                 <TextField
                     required
@@ -151,7 +158,15 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                             setAge1(parseInt(e.target.value));
                     }}
                 />
-                <h3>Borrower 2:</h3>
+                <Grid container direction="row" alignItems="center" justifyContent="center">
+                    <Grid item>
+                        <PersonIcon/>
+                    </Grid>
+                    <Grid item>
+                        <h3>Borrower 2:</h3>
+                    </Grid>
+                </Grid>
+
                 <TextField
                     id="outlined-required"
                     type="number"
@@ -176,6 +191,8 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                                 maxWidth: 430,
                                 color: '#e9c46a',
                                 margin: 5,
+                                marginLeft: 20,
+                                marginRight: 20,
                                 marginBottom: 20,
                                 visibility: isVisible ? 'visible' : 'hidden'
                             }}

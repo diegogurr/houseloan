@@ -31,7 +31,7 @@ export const Homepage = () => {
                 </Toolbar>
             </AppBar>
             <Grid container spacing={0} sx={{mx: 2, mt: 2}}>
-                <Grid item xs={4} sm={4} md={4} lg={3}>
+                <Grid item xs={4} sm={5} md={4} lg={4}>
                     <Paper>
                         <InsertData setMinPrice={setMinPrice} setMaxPrice={setMaxPrice}
                                     setLoanDuration={setLoanDuration}
@@ -39,7 +39,7 @@ export const Homepage = () => {
                                     setMainAge={setMainAge}/>
                     </Paper>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4} lg={8} sx={{mx: 2, mt: 0}}>
+                <Grid item xs={12} sm={6} md={7} lg={7} sx={{mx: 2, mt: 0}}>
                     <Paper>
                         <Results minPrice={minPrice} maxPrice={maxPrice} loanDuration={loanDuration}
                                  incomesSum={incomesSum}

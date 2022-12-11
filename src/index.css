@@ -9,12 +9,15 @@ body {
 }
 
 footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 1rem;
     padding: 1rem;
     background-color: #264653;
     position: fixed;
     bottom: 0;
-    height: 50px;
+    height: 10px;
     left: 0;
     width: 100%;
 }
