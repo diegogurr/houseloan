@@ -73,8 +73,8 @@ function numFormatter(num) {
 function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, setAnnualGrossIncome, setMainAge}) {
     const [value, setValue] = React.useState([0, 25]);
 
-    const [age1, setAge1] = useState(0);
-    const [age2, setAge2] = useState(0);
+    const [age1, setAge1] = useState(18);
+    const [age2, setAge2] = useState(18);
 
     const [income1, setIncome1] = useState(0);
     const [income2, setIncome2] = useState(0);
@@ -82,6 +82,7 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
     const [checked, setChecked] = React.useState(false);
 
     const [isVisible, setIsVisible] = useState(true);
+    //const [singlePrice, setSinglePrice] = useState(0);
 
     const handleChangeCheckbox = (event) => {
         setChecked(event.target.checked);
@@ -131,7 +132,7 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                 <TextField
                     required
                     type="number"
-                    min={0}
+                    InputProps={{inputProps: {min: 0}}}
                     id="outlined-required"
                     label="Annual Gross Income"
                     defaultValue=""
@@ -143,19 +144,17 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                 <TextField
                     required
                     value={age1}
+                    InputProps={{inputProps: {min: 18, max: 100}}}
                     type="number"
                     id="outlined-required"
                     label="Age"
-                    defaultValue=""
+                    defaultValue="18"
                     error={age1 > 100 || (age1 < 18 && age1 > 0)}
                     //helperText={(age1>100||age1<18&&age1>0)?"Age must be in 18-100 range":""}
                     size='small'
                     sx={{width: 80}}
                     onChange={(e) => {
-                        if (age1 < 0)
-                            setAge1(0)
-                        else
-                            setAge1(parseInt(e.target.value));
+                        setAge1(parseInt(e.target.value));
                     }}
                 />
                 <Grid container direction="row" alignItems="center" justifyContent="center">
@@ -172,12 +171,14 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                     type="number"
                     label="Annual Gross Income"
                     defaultValue=""
+                    InputProps={{inputProps: {min: 0}}}
                     size='small'
                     onChange={(e) => {
                         setIncome2(parseInt(e.target.value));
                     }}
                 />
                 <TextField id="outlined-required" type="number" label="Age" defaultValue="" size='small'
+                           InputProps={{inputProps: {min: 18, max: 100}}}
                            sx={{width: 80}} onChange={(e) => {
                     setAge2(parseInt(e.target.value))
                 }}
@@ -195,7 +196,7 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                                 visibility: isVisible ? 'visible' : 'hidden'
                             }}
                             value={value}
-                            min={0}
+                            InputProps={{inputProps: {min: 0}}}
                             step={1.25}
                             max={150}
                             valueLabelFormat={numFormatter}
@@ -217,8 +218,10 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                             id="outlined-required"
                             label="Property Price"
                             defaultValue=""
+                            //value={singlePrice.toLocaleString()}
                             size='small'
                             onChange={(e) => {
+                                //setSinglePrice(parseInt(e.target.value.replace(/\D/g, '')));
                                 setMinPrice(parseInt(e.target.value));
                                 setMaxPrice(parseInt(e.target.value))
                             }}
