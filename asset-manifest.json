@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/houseloan/static/css/main.e1f3735f.css",
-    "main.js": "/houseloan/static/js/main.d4d8a044.js",
+    "main.js": "/houseloan/static/js/main.b577425d.js",
     "static/media/1200px-HSBC_logo_(2018).svg.png": "/houseloan/static/media/1200px-HSBC_logo_(2018).svg.0838b0fc1963a411d2e3.png",
     "index.html": "/houseloan/index.html",
     "main.e1f3735f.css.map": "/houseloan/static/css/main.e1f3735f.css.map",
-    "main.d4d8a044.js.map": "/houseloan/static/js/main.d4d8a044.js.map"
+    "main.b577425d.js.map": "/houseloan/static/js/main.b577425d.js.map"
   },
   "entrypoints": [
     "static/css/main.e1f3735f.css",
-    "static/js/main.d4d8a044.js"
+    "static/js/main.b577425d.js"
   ]
 }
