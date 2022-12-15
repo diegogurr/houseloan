@@ -1,9 +1,9 @@
 import React from "react";
 
 const Footer = () => (
-    <div className="footer">
+    <footer className="footer">
         <p style={{color: 'white'}}>© 2022 HouseLoanTeam. All rights reserved.</p>
-    </div>
+    </footer>
 );
 
 export default Footer;

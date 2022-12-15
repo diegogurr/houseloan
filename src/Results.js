@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import HSBCLogo from './Images/1200px-HSBC_logo_(2018).svg.png'
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 function createData(name, paymentPerMonthAPS, promiseOfSale, paymentPerMonthHSBC, paymentPerMonthBankOfValletta, paymentPerMonthBNF, canAfford) {
     return {
@@ -28,6 +30,10 @@ function createData(name, paymentPerMonthAPS, promiseOfSale, paymentPerMonthHSBC
 function Results(props) {
     const [rows, setRows] = useState([]);
     const [currentIncomesSum, setCurrentIncomesSum] = useState(0);
+    const [resultsVisible, setResultsVisible] = useState(false);
+    const [calculateClickable, setCalculateClickable] = useState(true);
+    const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+
 
     function calculatePOS(priceEveryStep, monthlyRateInterest) {
         const p = 0.9 * (priceEveryStep)
@@ -42,10 +48,21 @@ function Results(props) {
         return finalResult
     }
 
+    const handleSnackbarClick = () => {
+        setSnackbarOpen(true)
+    };
+    const handleSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setSnackbarOpen(false);
+    };
     const handleAddButtonClick = (minPrice, maxPrice) => {
         let price = minPrice
         let priceStep = 10000
         setRows([]) //RESET TABLE
+
         while (price <= maxPrice) {
 
             const newItem = createData(price, calculatePOS(price, 3.04), 0.1 * price, calculatePOS(price, 2.70), calculatePOS(price, 2.58), calculatePOS(price, 2.81))
@@ -82,7 +99,8 @@ function Results(props) {
                                         endIcon={<SendIcon/>}
                                         onClick={() => {
                                             handleAddButtonClick(props.minPrice, props.maxPrice);
-                                            setCurrentIncomesSum(props.incomesSum)
+                                            setCurrentIncomesSum(props.incomesSum);
+                                            setResultsVisible(true);
                                         }}
                                         disabled={props.annualGrossIncome == 0 || props.mainAge == 0 || props.minPrice == 0 || props.maxPrice == 0 || props.mainAge < 18 || props.mainAge > 100 || isNaN(props.annualGrossIncome)}>Calculate</Button>
                                 <Button sx={{
@@ -91,8 +109,11 @@ function Results(props) {
                                     }
                                 }} variant="contained" size='small'
                                         startIcon={<DeleteIcon/>}
+                                        disabled={!resultsVisible}
                                         onClick={() => {
-                                            setRows([])
+                                            setRows([]);
+                                            setResultsVisible(false);
+                                            handleSnackbarClick();
                                         }}>Clear</Button>
                             </TableCell>
 
@@ -118,7 +139,16 @@ function Results(props) {
                     </TableBody>
                 </Table>
             </TableContainer>
-
+            <Snackbar
+                anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
+                open={snackbarOpen}
+                autoHideDuration={4000}
+                onClose={handleSnackbarClose}
+            >
+                <Alert variant={'filled'} onClose={handleSnackbarClose} severity={'info'}>
+                    {'Results Cleared'}
+                </Alert>
+            </Snackbar>
         </Box>
     );
 

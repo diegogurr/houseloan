@@ -190,9 +190,7 @@ function InsertData({setMinPrice, setMaxPrice, setLoanDuration, setIncomesSum, s
                             style={{
                                 maxWidth: 430,
                                 color: '#e9c46a',
-                                margin: 5,
-                                marginLeft: 20,
-                                marginRight: 20,
+                                mx: 15,
                                 marginBottom: 20,
                                 visibility: isVisible ? 'visible' : 'hidden'
                             }}

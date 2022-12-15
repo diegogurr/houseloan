@@ -48,9 +48,7 @@ export const Homepage = () => {
                     </Paper>
                 </Grid>
             </Grid>
-            <footer>
-                <Footer/>
-            </footer>
+            <Footer/>
         </Box>
     );
 };
